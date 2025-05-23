@@ -18,7 +18,7 @@ add_custom_command( OUTPUT TestDeadCodeElimination.sh
 	COMMAND echo 'clang -emit-llvm -S -o test2.result.ll -fexperimental-new-pass-manager -fpass-plugin=${CMAKE_INSTALL_PREFIX}/lib/libLLVMTutorialDeadCodeEliminationNewPass.so ${CMAKE_INSTALL_PREFIX}/testcase/1_dead_code_elimination/test2.ll' >> TestDeadCodeElimination.sh
 	COMMAND echo 'echo \"[test3.ll]]\"' >> TestDeadCodeElimination.sh
 	COMMAND echo 'clang -emit-llvm -S -o test3.result.ll -fexperimental-new-pass-manager -fpass-plugin=${CMAKE_INSTALL_PREFIX}/lib/libLLVMTutorialDeadCodeEliminationNewPass.so ${CMAKE_INSTALL_PREFIX}/testcase/1_dead_code_elimination/test3.ll' >> TestDeadCodeElimination.sh
-	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
+	WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} )
 add_custom_target( TestDeadCodeEliminationScript 
 	DEPENDS TestDeadCodeElimination.sh )
 add_dependencies( LLVMTutorialDeadCodeEliminationNewPass
@@ -34,7 +34,7 @@ install(
 	FILES       testcase/test3.ll
 	DESTINATION ${CMAKE_INSTALL_PREFIX}/testcase/1_dead_code_elimination)
 install(
-	FILES       TestDeadCodeElimination.sh
+	FILES       ${CMAKE_CURRENT_BINARY_DIR}/TestDeadCodeElimination.sh
 	DESTINATION ${CMAKE_INSTALL_PREFIX}/bin  )
 install( 
 	TARGETS  LLVMTutorialDeadCodeEliminationNewPass 

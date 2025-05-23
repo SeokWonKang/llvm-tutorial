@@ -11,7 +11,7 @@ target_include_directories( LLVMTutorialPrintFuncNameNewPass PUBLIC
 add_custom_command( OUTPUT TestPrintFuncName.sh
 	COMMAND echo '\#!/bin/bash' > TestPrintFuncName.sh
 	COMMAND echo 'clang -fexperimental-new-pass-manager -fpass-plugin=${CMAKE_INSTALL_PREFIX}/lib/libLLVMTutorialPrintFuncNameNewPass.so ${CMAKE_INSTALL_PREFIX}/testcase/0_print_func_new_pass/test.c' >> TestPrintFuncName.sh
-	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
+	WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} )
 add_custom_target( TestPrintFuncNameScript
 	DEPENDS TestPrintFuncName.sh )
 add_dependencies( LLVMTutorialPrintFuncNameNewPass 
@@ -21,7 +21,7 @@ add_dependencies( LLVMTutorialPrintFuncNameNewPass
 # Install
 #------------------------------
 install(
-	FILES       TestPrintFuncName.sh
+	FILES       ${CMAKE_CURRENT_BINARY_DIR}/TestPrintFuncName.sh
 	DESTINATION ${CMAKE_INSTALL_PREFIX}/bin  )
 install( 
 	FILES       testcase/test.c

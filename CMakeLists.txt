@@ -29,6 +29,7 @@ add_compile_options(-W -Wall -fPIC -fno-rtti -Wno-unused-parameter)
 # Sub Directories
 add_subdirectory(0_print_func_new_pass)
 add_subdirectory(1_dead_code_elimination)
+add_subdirectory(2_instruction_move)
 
 #------------------------------
 # Packages
